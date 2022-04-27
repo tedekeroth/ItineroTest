@@ -28,8 +28,9 @@ namespace ItineroMainForm
         {
             ThreadPool.QueueUserWorkItem(o =>
             {
+                textBox1.Text = "Starting RouterCache init" + Environment.NewLine;
                 RouterCache.Init();
-                Debug.WriteLine("Init done");
+                textBox1.Text += "RouterCache init done";
                 Invoke(new Action(() => { button2.Enabled = true; }));
             });
             
@@ -59,11 +60,11 @@ namespace ItineroMainForm
                     highest = sw.ElapsedMilliseconds;
                 if (sw.ElapsedMilliseconds < lowest)
                     lowest = sw.ElapsedMilliseconds;
-                sw.Restart();
+                sw.Reset();
             }
             double avg = totalElapsed / count;
             List<string> asd = new List<string>();
-            asd.Add("RESULTS");
+
             asd.Add("RESULTS");
             asd.Add($"Avg:\t{avg}");
             asd.Add($"Highest:\t{highest}");
